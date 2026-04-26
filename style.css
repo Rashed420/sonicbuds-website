@@ -196,17 +196,33 @@ nav {
     padding: 100px 5%;
 }
 
+/* ── Single "All Products" tab ─────────────────────────────── */
+.category-tabs.single-tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.tab-active-single {
+    padding: 0.6rem 1.8rem;
+    background: var(--accent);
+    color: #000;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* legacy tab styles kept in case needed */
 .category-tabs {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
 }
-
-.category-tabs input {
-    display: none;
-}
-
+.category-tabs input { display: none; }
 .category-tabs label {
     padding: 0.6rem 1.5rem;
     background: var(--glass);
@@ -215,14 +231,6 @@ nav {
     cursor: pointer;
     transition: 0.3s;
     font-size: 0.9rem;
-}
-
-#tab1:checked ~ label[for="tab1"],
-#tab2:checked ~ label[for="tab2"],
-#tab3:checked ~ label[for="tab3"] {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
 }
 
 .product-grid {
@@ -347,6 +355,7 @@ nav {
     margin-bottom: 2rem;
 }
 
+/* ── Contact ─────────────────────────────────────────────── */
 .contact {
     padding: 100px 5%;
 }
@@ -373,12 +382,222 @@ nav {
     color: #fff;
     outline: none;
     transition: 0.3s;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
 }
 
 .form-group input:focus, .form-group textarea:focus {
     border-color: var(--accent);
 }
 
+.contact-error {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    min-height: 1.2rem;
+}
+
+.contact-send-btn {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    opacity: 1 !important;
+    animation: none !important;
+}
+
+/* ── COD Modal ───────────────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: #0e1a15;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 28px;
+    padding: 2.5rem 2.2rem;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.35s ease;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 255, 136, 0.08);
+}
+
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.4rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+.modal-close:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+}
+
+.modal-icon {
+    color: var(--accent);
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 0.8rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.modal-sub {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+}
+
+.modal-product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 255, 136, 0.06);
+    border: 1px solid rgba(0, 255, 136, 0.18);
+    border-radius: 14px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.8rem;
+}
+
+.modal-product-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.modal-product-price {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.modal-form .mform-group {
+    margin-bottom: 1.2rem;
+}
+
+.modal-form .mform-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 0.5rem;
+}
+
+.modal-form .mform-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #fff;
+    outline: none;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    transition: 0.25s;
+}
+
+.modal-form .mform-group input:focus {
+    border-color: var(--accent);
+    background: rgba(0, 255, 136, 0.04);
+}
+
+.modal-error {
+    color: #ff6b6b;
+    font-size: 0.83rem;
+    margin-bottom: 0.8rem;
+    min-height: 1.1rem;
+}
+
+.modal-submit-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: var(--font-main);
+    box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.modal-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.modal-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Success icon in modal */
+.success-icon-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.success-icon {
+    color: var(--accent);
+    width: 64px !important;
+    height: 64px !important;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
 footer {
     padding: 80px 5% 40px;
     border-top: 1px solid var(--glass-border);
@@ -471,4 +690,9 @@ footer {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
+    .modal-box {
+        padding: 2rem 1.5rem;
+    }
 }
+
