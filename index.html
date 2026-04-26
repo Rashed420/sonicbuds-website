@@ -13,6 +13,53 @@
 <body>
     <div class="bg-gradient"></div>
 
+    <!-- ── COD MODAL ─────────────────────────────────────── -->
+    <div class="modal-overlay" id="codModal">
+        <div class="modal-box">
+            <!-- Step 1 : Order Form -->
+            <div id="modalStep1">
+                <button class="modal-close" id="modalClose">&#x2715;</button>
+                <div class="modal-header">
+                    <i data-lucide="shopping-bag" class="modal-icon"></i>
+                    <h3>Cash on Delivery</h3>
+                    <p class="modal-sub">Fill in your details and we'll deliver to your door</p>
+                </div>
+                <div class="modal-product-info" id="modalProductInfo"></div>
+                <div class="modal-form">
+                    <div class="mform-group">
+                        <label>Full Name</label>
+                        <input type="text" id="codName" placeholder="e.g. Rafiq Ahmed" required>
+                    </div>
+                    <div class="mform-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="codPhone" placeholder="e.g. 01XXXXXXXXX" required>
+                    </div>
+                    <div class="mform-group">
+                        <label>Delivery Location</label>
+                        <input type="text" id="codLocation" placeholder="e.g. GEC Circle, Chattogram" required>
+                    </div>
+                    <p class="modal-error" id="codError"></p>
+                    <button class="modal-submit-btn" id="codSubmit">
+                        <span id="codBtnText">Confirm Order</span>
+                        <span id="codBtnLoader" style="display:none">Placing Order…</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2 : Success -->
+            <div id="modalStep2" style="display:none; text-align:center; padding: 1rem 0;">
+                <div class="success-icon-wrap">
+                    <i data-lucide="check-circle" class="success-icon"></i>
+                </div>
+                <h3 style="font-size:1.6rem; margin-bottom: 0.8rem;">Order Confirmed! 🎉</h3>
+                <p style="color:var(--text-dim); margin-bottom: 0.5rem;">Thank you! Your order has been placed successfully.</p>
+                <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom: 2rem;">Our team will call you soon to confirm delivery.</p>
+                <button class="modal-submit-btn" id="modalDone">Done</button>
+            </div>
+        </div>
+    </div>
+    <!-- ── END MODAL ──────────────────────────────────────── -->
+
     <nav>
         <a href="#" class="logo">SONIC<span>BUDS</span> BD</a>
         <input type="checkbox" id="menu-toggle">
@@ -56,13 +103,9 @@
             <div class="line"></div>
         </div>
 
-        <div class="category-tabs">
-            <input type="radio" name="cat" id="tab1" checked>
-            <label for="tab1">All Products</label>
-            <input type="radio" name="cat" id="tab2">
-            <label for="tab2">Pro Series</label>
-            <input type="radio" name="cat" id="tab3">
-            <label for="tab3">Gaming</label>
+        <!-- Only "All Products" tab remains -->
+        <div class="category-tabs single-tab">
+            <span class="tab-active-single">All Products</span>
         </div>
 
         <div class="product-grid">
@@ -72,7 +115,7 @@
                 </div>
                 <h4>SonicBuds Pro</h4>
                 <p class="price">৳1,999</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('SonicBuds Pro','৳1,999')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -80,7 +123,7 @@
                 </div>
                 <h4>Chattogram Air Pro</h4>
                 <p class="price">৳2,499</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('Chattogram Air Pro','৳2,499')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -88,7 +131,7 @@
                 </div>
                 <h4>BassX Buds</h4>
                 <p class="price">৳1,499</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('BassX Buds','৳1,499')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -96,7 +139,7 @@
                 </div>
                 <h4>SonicBuds Elite</h4>
                 <p class="price">৳2,999</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('SonicBuds Elite','৳2,999')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -104,7 +147,7 @@
                 </div>
                 <h4>PortCity Buds</h4>
                 <p class="price">৳1,799</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('PortCity Buds','৳1,799')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -112,7 +155,7 @@
                 </div>
                 <h4>SonicBuds Ultra</h4>
                 <p class="price">৳3,499</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('SonicBuds Ultra','৳3,499')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -120,7 +163,7 @@
                 </div>
                 <h4>BassX Pro</h4>
                 <p class="price">৳2,199</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('BassX Pro','৳2,199')">Add to Cart</button>
             </div>
             <div class="product-card">
                 <div class="img-box">
@@ -128,7 +171,7 @@
                 </div>
                 <h4>SonicBuds Lite</h4>
                 <p class="price">৳1,299</p>
-                <button class="buy-btn">Add to Cart</button>
+                <button class="buy-btn" onclick="openCOD('SonicBuds Lite','৳1,299')">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -179,18 +222,29 @@
             <div class="line"></div>
         </div>
         <div class="contact-container">
-            <form action="#">
+            <!-- Contact Step 1 : Form -->
+            <div id="contactStep1">
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" id="ctName" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" id="ctEmail" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <textarea id="ctMessage" rows="5" placeholder="Your Message" required></textarea>
                 </div>
-                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
-            </form>
+                <p class="contact-error" id="ctError"></p>
+                <button class="btn contact-send-btn" id="ctSubmit">
+                    <span id="ctBtnText">Send Message</span>
+                    <span id="ctBtnLoader" style="display:none">Sending…</span>
+                </button>
+            </div>
+            <!-- Contact Step 2 : Success -->
+            <div id="contactStep2" style="display:none; text-align:center; padding: 2rem 0;">
+                <i data-lucide="check-circle" style="color:var(--accent); width:56px; height:56px; margin-bottom:1.2rem;"></i>
+                <h4 style="font-size:1.4rem; margin-bottom:0.6rem;">Message Sent! ✅</h4>
+                <p style="color:var(--text-dim);">Thanks for reaching out. We'll get back to you soon.</p>
+            </div>
         </div>
     </section>
 
@@ -232,6 +286,148 @@
 
     <script>
         lucide.createIcons();
+
+        // ─────────────────────────────────────────────────────────────
+        // IMPORTANT: Paste your Google Apps Script Web App URL below.
+        // See the SETUP GUIDE file for step-by-step instructions.
+        // ─────────────────────────────────────────────────────────────
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgpco-sy4zxXzndXyrNazEJAQo3v1QWLRckgiMKrqMesYiGw9oZXY7KWd7HZ-WIzYJhA/exec";
+
+        // ── COD MODAL ────────────────────────────────────────────────
+        let currentProduct = "";
+        let currentPrice   = "";
+
+        function openCOD(productName, price) {
+            currentProduct = productName;
+            currentPrice   = price;
+
+            document.getElementById("modalProductInfo").innerHTML =
+                `<span class="modal-product-name">${productName}</span>
+                 <span class="modal-product-price">${price}</span>`;
+
+            // reset to step 1
+            document.getElementById("modalStep1").style.display = "block";
+            document.getElementById("modalStep2").style.display = "none";
+            document.getElementById("codName").value     = "";
+            document.getElementById("codPhone").value    = "";
+            document.getElementById("codLocation").value = "";
+            document.getElementById("codError").textContent = "";
+
+            document.getElementById("codModal").classList.add("active");
+            document.body.style.overflow = "hidden";
+            lucide.createIcons();
+        }
+
+        function closeCOD() {
+            document.getElementById("codModal").classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        document.getElementById("modalClose").addEventListener("click", closeCOD);
+        document.getElementById("codModal").addEventListener("click", function(e) {
+            if (e.target === this) closeCOD();
+        });
+        document.getElementById("modalDone").addEventListener("click", closeCOD);
+
+        document.getElementById("codSubmit").addEventListener("click", async function() {
+            const name     = document.getElementById("codName").value.trim();
+            const phone    = document.getElementById("codPhone").value.trim();
+            const location = document.getElementById("codLocation").value.trim();
+            const errEl    = document.getElementById("codError");
+
+            if (!name || !phone || !location) {
+                errEl.textContent = "Please fill in all fields.";
+                return;
+            }
+            if (!/^01[3-9]\d{8}$/.test(phone)) {
+                errEl.textContent = "Please enter a valid Bangladeshi phone number.";
+                return;
+            }
+            errEl.textContent = "";
+
+            document.getElementById("codBtnText").style.display   = "none";
+            document.getElementById("codBtnLoader").style.display = "inline";
+            this.disabled = true;
+
+            const timestamp = new Date().toLocaleString("en-BD", { timeZone: "Asia/Dhaka" });
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode:   "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        sheet:     "Orders",
+                        timestamp,
+                        name,
+                        phone,
+                        location,
+                        product:   currentProduct,
+                        price:     currentPrice
+                    })
+                });
+            } catch (err) {
+                console.error("Sheet error:", err);
+            }
+
+            // Show success regardless (no-cors = can't read response)
+            document.getElementById("modalStep1").style.display = "none";
+            document.getElementById("modalStep2").style.display = "block";
+            lucide.createIcons();
+
+            document.getElementById("codBtnText").style.display   = "inline";
+            document.getElementById("codBtnLoader").style.display = "none";
+            this.disabled = false;
+        });
+
+        // ── CONTACT FORM ─────────────────────────────────────────────
+        document.getElementById("ctSubmit").addEventListener("click", async function() {
+            const name    = document.getElementById("ctName").value.trim();
+            const email   = document.getElementById("ctEmail").value.trim();
+            const message = document.getElementById("ctMessage").value.trim();
+            const errEl   = document.getElementById("ctError");
+
+            if (!name || !email || !message) {
+                errEl.textContent = "Please fill in all fields.";
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                errEl.textContent = "Please enter a valid email address.";
+                return;
+            }
+            errEl.textContent = "";
+
+            document.getElementById("ctBtnText").style.display   = "none";
+            document.getElementById("ctBtnLoader").style.display = "inline";
+            this.disabled = true;
+
+            const timestamp = new Date().toLocaleString("en-BD", { timeZone: "Asia/Dhaka" });
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    mode:   "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        sheet: "Messages",
+                        timestamp,
+                        name,
+                        email,
+                        message
+                    })
+                });
+            } catch (err) {
+                console.error("Sheet error:", err);
+            }
+
+            document.getElementById("contactStep1").style.display = "none";
+            document.getElementById("contactStep2").style.display = "block";
+            lucide.createIcons();
+
+            document.getElementById("ctBtnText").style.display   = "inline";
+            document.getElementById("ctBtnLoader").style.display = "none";
+            this.disabled = false;
+        });
     </script>
 </body>
 </html>
