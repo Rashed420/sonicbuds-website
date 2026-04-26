@@ -8,7 +8,98 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest">
+
+<script>
+lucide.createIcons();
+
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpT0RDgHohmuCZeOVgA3Sq-og9ZTY6mfq3dAWvAp4XLY1iBFHTZdnfqLZm-Wa6o-vCKw/exec";
+
+let currentProduct = "";
+let currentPrice   = "";
+
+// ✅ OPEN MODAL
+function openCOD(productName, price) {
+    currentProduct = productName;
+    currentPrice   = price;
+
+    document.getElementById("modalProductInfo").innerHTML =
+        `<span>${productName}</span> <span>${price}</span>`;
+
+    document.getElementById("modalStep1").style.display = "block";
+    document.getElementById("modalStep2").style.display = "none";
+
+    document.getElementById("codName").value = "";
+    document.getElementById("codPhone").value = "";
+    document.getElementById("codLocation").value = "";
+
+    document.getElementById("codModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+// ✅ CLOSE MODAL
+function closeCOD() {
+    document.getElementById("codModal").classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+window.openCOD = openCOD;
+
+document.getElementById("modalClose").onclick = closeCOD;
+document.getElementById("modalDone").onclick = closeCOD;
+
+document.getElementById("codModal").addEventListener("click", function(e) {
+    if (e.target === this) closeCOD();
+});
+
+// ✅ SUBMIT ORDER
+document.getElementById("codSubmit").addEventListener("click", async function() {
+
+    const name = codName.value.trim();
+    const phone = codPhone.value.trim();
+    const location = codLocation.value.trim();
+    const err = document.getElementById("codError");
+
+    if (!name || !phone || !location) {
+        err.innerText = "Fill all fields";
+        return;
+    }
+
+    if (!/^01[3-9]\d{8}$/.test(phone)) {
+        err.innerText = "Invalid phone number";
+        return;
+    }
+
+    err.innerText = "";
+
+    try {
+        await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sheet: "Orders",
+                timestamp: new Date().toLocaleString(),
+                name,
+                phone,
+                location,
+                product: currentProduct,
+                price: currentPrice
+            })
+        });
+    } catch (e) {
+        console.log(e);
+    }
+
+    // SUCCESS UI
+    document.getElementById("modalStep1").style.display = "none";
+    document.getElementById("modalStep2").style.display = "block";
+});
+</script>
+
+
+</script>
 </head>
 <body>
     <div class="bg-gradient"></div>
