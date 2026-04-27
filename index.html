@@ -18,7 +18,7 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpT0RDgHohmuCZ
 let currentProduct = "";
 let currentPrice   = "";
 
-// ✅ OPEN MODAL
+// OPEN MODAL
 function openCOD(productName, price) {
     currentProduct = productName;
     currentPrice   = price;
@@ -37,7 +37,7 @@ function openCOD(productName, price) {
     document.body.style.overflow = "hidden";
 }
 
-// ✅ CLOSE MODAL
+//  CLOSE MODAL
 function closeCOD() {
     document.getElementById("codModal").classList.remove("active");
     document.body.style.overflow = "";
@@ -52,7 +52,7 @@ document.getElementById("codModal").addEventListener("click", function(e) {
     if (e.target === this) closeCOD();
 });
 
-// ✅ SUBMIT ORDER
+//  SUBMIT ORDER
 document.getElementById("codSubmit").addEventListener("click", async function() {
 
     const name = codName.value.trim();
@@ -104,7 +104,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
 <body>
     <div class="bg-gradient"></div>
 
-    <!-- ── COD MODAL ─────────────────────────────────────── -->
+    <! COD MODAL-->
     <div class="modal-overlay" id="codModal">
         <div class="modal-box">
             <!-- Step 1 : Order Form -->
@@ -137,7 +137,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
                 </div>
             </div>
 
-            <!-- Step 2 : Success -->
+            <! Success->
             <div id="modalStep2" style="display:none; text-align:center; padding: 1rem 0;">
                 <div class="success-icon-wrap">
                     <i data-lucide="check-circle" class="success-icon"></i>
@@ -149,7 +149,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
             </div>
         </div>
     </div>
-    <!-- ── END MODAL ──────────────────────────────────────── -->
+    <!--END MODAL -->
 
     <nav>
         <a href="#" class="logo">SONIC<span>BUDS</span> BD</a>
@@ -194,7 +194,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
             <div class="line"></div>
         </div>
 
-        <!-- Only "All Products" tab remains -->
+        <! Only "All Products" tab remains >
         <div class="category-tabs single-tab">
             <span class="tab-active-single">All Products</span>
         </div>
@@ -377,14 +377,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
 
     <script>
         lucide.createIcons();
-
-        // ─────────────────────────────────────────────────────────────
-        // IMPORTANT: Paste your Google Apps Script Web App URL below.
-        // See the SETUP GUIDE file for step-by-step instructions.
-        // ─────────────────────────────────────────────────────────────
         const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgpco-sy4zxXzndXyrNazEJAQo3v1QWLRckgiMKrqMesYiGw9oZXY7KWd7HZ-WIzYJhA/exec";
-
-        // ── COD MODAL ────────────────────────────────────────────────
         let currentProduct = "";
         let currentPrice   = "";
 
@@ -396,7 +389,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
                 `<span class="modal-product-name">${productName}</span>
                  <span class="modal-product-price">${price}</span>`;
 
-            // reset to step 1
+    
             document.getElementById("modalStep1").style.display = "block";
             document.getElementById("modalStep2").style.display = "none";
             document.getElementById("codName").value     = "";
@@ -471,7 +464,7 @@ document.getElementById("codSubmit").addEventListener("click", async function() 
             this.disabled = false;
         });
 
-        // ── CONTACT FORM ─────────────────────────────────────────────
+        // CONTACT FORM 
         document.getElementById("ctSubmit").addEventListener("click", async function() {
             const name    = document.getElementById("ctName").value.trim();
             const email   = document.getElementById("ctEmail").value.trim();
